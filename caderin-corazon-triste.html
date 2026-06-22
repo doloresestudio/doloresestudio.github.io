@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caderín Corazón Triste — dolores estudio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:    #f2f1ef;
+      --fg:    #1a1a18;
+      --mid:   #8a8880;
+      --line:  #d4d2ce;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 70px;
+      flex-shrink: 0;
+    }
+
+    nav {
+      display: flex;
+      gap: 2.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    nav a:hover { color: var(--fg); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 0.9rem 2.5rem;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      flex-shrink: 0;
+    }
+
+    .breadcrumb a:hover { color: var(--fg); }
+
+    /* ── PRODUCT LAYOUT ── */
+    .product-layout {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      flex: 1;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      border-right: 1px solid var(--line);
+      padding: 2rem;
+    }
+
+    .main-slide {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: var(--line);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+
+    .slide-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide-placeholder span {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+    }
+
+    .gallery-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding: 0 0.1rem;
+    }
+
+    .arrow {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--mid);
+      padding: 0.25rem 0;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+
+    .arrow:hover { color: var(--fg); }
+
+    .slide-count {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .thumb-row {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.75rem;
+      overflow-x: auto;
+    }
+
+    .thumb {
+      width: 76px;
+      height: 96px;
+      flex-shrink: 0;
+      background: var(--line);
+      cursor: pointer;
+      border: 1px solid transparent;
+      overflow: hidden;
+      opacity: 0.45;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+
+    .thumb.active {
+      border-color: var(--fg);
+      opacity: 1;
+    }
+
+    .thumb:hover { opacity: 0.75; }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ── PRODUCT INFO ── */
+    .product-info {
+      padding: 2.5rem;
+    }
+
+    .product-info-inner {
+      position: sticky;
+      top: calc(70px + 2rem);
+    }
+
+    .product-name {
+      font-family: 'EB Garamond', serif;
+      font-size: 2.1rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+    }
+
+    .product-price {
+      font-size: 1rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .product-avail {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .product-hr {
+      border: none;
+      border-top: 1px solid var(--line);
+      margin: 2rem 0;
+    }
+
+    .product-desc {
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: var(--mid);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid var(--fg);
+      padding: 0.75rem 1.75rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn-ig:hover { background: var(--fg); color: var(--bg); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      flex-shrink: 0;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      header { padding: 0 1.25rem; }
+      nav { gap: 1.5rem; }
+      .breadcrumb { padding: 0.75rem 1.25rem; }
+
+      .product-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 1.25rem;
+      }
+
+      .product-info {
+        padding: 1.75rem 1.25rem;
+      }
+
+      .product-info-inner { position: static; }
+
+      footer {
+        padding: 1.25rem;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="/"><img src="dolores.png" alt="Dolores" style="height: 42px; display: block;" /></a>
+    <nav>
+      <a href="/#catalogo">catálogo</a>
+      <a href="/#sobre">sobre</a>
+      <a href="/#contacto">contacto</a>
+    </nav>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="/">← catálogo</a>
+  </div>
+
+  <!-- PRODUCTO -->
+  <div class="product-layout">
+
+    <!-- GALERÍA -->
+    <div class="gallery">
+
+      <div class="main-slide" id="mainSlide">
+        <!-- Cuando tengas fotos, reemplaza esto por: <img src="caderin-01.jpg" alt="Caderín Corazón Triste" /> -->
+        <div class="slide-placeholder"><span>foto próximamente</span></div>
+      </div>
+
+      <div class="gallery-nav">
+        <button class="arrow" onclick="changeSlide(-1)">← anterior</button>
+        <span class="slide-count" id="slideCount">1 / 3</span>
+        <button class="arrow" onclick="changeSlide(1)">siguiente →</button>
+      </div>
+
+      <div class="thumb-row" id="thumbRow">
+        <!-- Cuando tengas fotos, agrega dentro de cada .thumb: <img src="caderin-0X.jpg" /> -->
+        <div class="thumb active" onclick="goTo(0)"></div>
+        <div class="thumb" onclick="goTo(1)"></div>
+        <div class="thumb" onclick="goTo(2)"></div>
+      </div>
+
+    </div>
+
+    <!-- INFO -->
+    <div class="product-info">
+      <div class="product-info-inner">
+
+        <h1 class="product-name">Caderín Corazón Triste</h1>
+        <p class="product-price">$60.000</p>
+        <p class="product-avail">stock · encargo</p>
+
+        <hr class="product-hr" />
+
+        <p class="product-desc">
+          Caderín de crochet filet en algodón mercerizado con motivo de corazón triste.
+          Diseñado y tejido a mano por Amaranta Paz.
+          <br /><br />
+          Disponible en stock o a pedido.
+        </p>
+
+        <a class="btn-ig" href="https://instagram.com/doloresestudio" target="_blank" rel="noopener">
+          Encargar por Instagram
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>dolores estudio</span>
+    <span>Santiago de Chile · 2025</span>
+  </footer>
+
+  <script>
+    // ── GALERÍA ──────────────────────────────────────────────
+    // Cuando tengas fotos, reemplaza los null con las rutas:
+    // Ej: const images = ['caderin-01.jpg', 'caderin-02.jpg', 'caderin-03.jpg'];
+    // ─────────────────────────────────────────────────────────
+    const images = [null, null, null];
+    const total = images.length;
+    let current = 0;
+
+    function goTo(n) {
+      current = (n + total) % total;
+
+      // Contador
+      document.getElementById('slideCount').textContent = `${current + 1} / ${total}`;
+
+      // Thumbnails
+      document.querySelectorAll('#thumbRow .thumb')
+        .forEach((t, i) => t.classList.toggle('active', i === current));
+
+      // Imagen principal
+      const slot = document.getElementById('mainSlide');
+      const src = images[current];
+      if (src) {
+        let img = slot.querySelector('img');
+        if (!img) {
+          slot.innerHTML = '';
+          img = document.createElement('img');
+          img.alt = 'Caderín Corazón Triste';
+          slot.appendChild(img);
+        }
+        img.src = src;
+      }
+    }
+
+    function changeSlide(dir) {
+      goTo(current + dir);
+    }
+
+    // Poblar thumbnails si hay imágenes
+    document.querySelectorAll('#thumbRow .thumb').forEach((thumb, i) => {
+      if (images[i]) {
+        const img = document.createElement('img');
+        img.src = images[i];
+        img.alt = `Caderín Corazón Triste vista ${i + 1}`;
+        thumb.appendChild(img);
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -320,21 +320,20 @@
     <div class="gallery">
 
       <div class="main-slide" id="mainSlide">
-        <!-- Cuando tengas fotos, reemplaza esto por: <img src="bandana-01.jpg" alt="Bandana Rosa" /> -->
-        <div class="slide-placeholder"><span>foto próximamente</span></div>
+        <img src="bandana-01.jpg" alt="Bandana Rosa" />
       </div>
 
       <div class="gallery-nav">
         <button class="arrow" onclick="changeSlide(-1)">← anterior</button>
-        <span class="slide-count" id="slideCount">1 / 3</span>
+        <span class="slide-count" id="slideCount">1 / 4</span>
         <button class="arrow" onclick="changeSlide(1)">siguiente →</button>
       </div>
 
       <div class="thumb-row" id="thumbRow">
-        <!-- Cuando tengas fotos, agrega dentro de cada .thumb: <img src="bandana-0X.jpg" /> -->
-        <div class="thumb active" onclick="goTo(0)"></div>
-        <div class="thumb" onclick="goTo(1)"></div>
-        <div class="thumb" onclick="goTo(2)"></div>
+        <div class="thumb active" onclick="goTo(0)"><img src="bandana-01.jpg" alt="Bandana Rosa vista 1" /></div>
+        <div class="thumb" onclick="goTo(1)"><img src="bandana-02.jpg" alt="Bandana Rosa vista 2" /></div>
+        <div class="thumb" onclick="goTo(2)"><img src="bandana-03.jpg" alt="Bandana Rosa vista 3" /></div>
+        <div class="thumb" onclick="goTo(3)"><img src="bandana-04.jpg" alt="Bandana Rosa vista 4" /></div>
       </div>
 
     </div>
@@ -376,7 +375,7 @@
     // Cuando tengas fotos, reemplaza los null con las rutas:
     // Ej: const images = ['bandana-01.jpg', 'bandana-02.jpg', 'bandana-03.jpg'];
     // ─────────────────────────────────────────────────────────
-    const images = [null, null, null];
+    const images = ['bandana-01.jpg', 'bandana-02.jpg', 'bandana-03.jpg', 'bandana-04.jpg'];
     const total = images.length;
     let current = 0;
 

@@ -86,7 +86,7 @@
 
     .main-slide {
       width: 100%;
-      aspect-ratio: 4/5;
+      aspect-ratio: 5/4;
       background: var(--line);
       overflow: hidden;
       position: relative;
@@ -158,8 +158,8 @@
     }
 
     .thumb {
-      width: 76px;
-      height: 96px;
+      width: 96px;
+      height: 76px;
       flex-shrink: 0;
       background: var(--line);
       cursor: pointer;
@@ -270,13 +270,13 @@
         padding: 1rem;
       }
 
-      .main-slide { aspect-ratio: 3/4; }
+      .main-slide { aspect-ratio: 4/3; }
 
       .gallery-nav { margin-top: 0.75rem; }
 
       .thumb-row { margin-top: 0.6rem; gap: 0.5rem; }
 
-      .thumb { width: 64px; height: 80px; }
+      .thumb { width: 80px; height: 64px; }
 
       .product-info {
         padding: 1.5rem 1.25rem 2rem;
@@ -318,8 +318,7 @@
     <div class="gallery">
 
       <div class="main-slide" id="mainSlide">
-        <!-- Cuando tengas fotos, reemplaza esto por: <img src="caderin-01.jpg" alt="Caderín Corazón Triste" /> -->
-        <div class="slide-placeholder"><span>foto próximamente</span></div>
+        <img src="caderin-01.jpg" alt="Caderín Corazón Triste" />
       </div>
 
       <div class="gallery-nav">
@@ -329,10 +328,9 @@
       </div>
 
       <div class="thumb-row" id="thumbRow">
-        <!-- Cuando tengas fotos, agrega dentro de cada .thumb: <img src="caderin-0X.jpg" /> -->
-        <div class="thumb active" onclick="goTo(0)"></div>
-        <div class="thumb" onclick="goTo(1)"></div>
-        <div class="thumb" onclick="goTo(2)"></div>
+        <div class="thumb active" onclick="goTo(0)"><img src="caderin-01.jpg" alt="Caderín Corazón Triste vista 1" /></div>
+        <div class="thumb" onclick="goTo(1)"><img src="caderin-02.jpg" alt="Caderín Corazón Triste vista 2" /></div>
+        <div class="thumb" onclick="goTo(2)"><img src="caderin-03.jpg" alt="Caderín Corazón Triste vista 3" /></div>
       </div>
 
     </div>
@@ -374,7 +372,7 @@
     // Cuando tengas fotos, reemplaza los null con las rutas:
     // Ej: const images = ['caderin-01.jpg', 'caderin-02.jpg', 'caderin-03.jpg'];
     // ─────────────────────────────────────────────────────────
-    const images = [null, null, null];
+    const images = ['caderin-01.jpg', 'caderin-02.jpg', 'caderin-03.jpg'];
     const total = images.length;
     let current = 0;
 
